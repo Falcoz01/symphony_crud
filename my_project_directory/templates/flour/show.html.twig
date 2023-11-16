@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Farine{% endblock %}
+
+{% block body %}
+
+    <h1>Mes farines</h1>
+
+    <a href="{{path('app_flour_create')}}">
+      <button type="button" class="btn btn-primary">Ajouter</button>
+    </a>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">type</th>
+      <th scope="col">taux de cendre</th>
+      <th scope="col">utilisation</th>
+      <th scope="col">Stocks</th>
+      <th scope="col">actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for flour in flours %}
+      
+        <tr>
+        <th cope="row">{{flour.id}}</th>
+          <td>{{flour.type}}</td>
+          <td>{{flour.rate}}</td>
+          <td>{{flour.usage}}</td>
+          <td>{{flour.stock}}</td>
+          <td><button>Modifier</button><button>Supprimer</button></td>
+        </tr>
+    {% endfor %}
+      
+    
+  </tbody>
+</table>
+{% endblock %}
