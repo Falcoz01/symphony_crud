@@ -29,9 +29,53 @@
           <td>{{flour.rate}}</td>
           <td>{{flour.usage}}</td>
           <td>{{flour.stock}}</td>
-          <td><button>Modifier</button><button>Supprimer</button></td>
+          <td>
+             <a href="{{ path('app_flour_update', {id: flour.id}) }}">
+            <button>Modifier</button>
+            </a>
+            <a href="{{ path('app_flour_delete', {id: flour.id}) }}">
+            <button>Supprimer</button>
+            </a>
+          </td>
         </tr>
     {% endfor %}
+
+    <h1>Mes levures</h1>
+
+     <a href="{{path('app_yeast_create')}}">
+      <button type="button" class="btn btn-primary">Ajouter</button>
+    </a>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">type</th>
+      <th scope="col">utilisation</th>
+      <th scope="col">Stocks</th>
+      <th scope="col">actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for yeast in yeasts %}
+      
+        <tr>
+        <th cope="row">{{yeast.id}}</th>
+          <td>{{yeast.type}}</td>
+          <td>{{yeast.rate}}</td>
+          <td>{{yeast.usage}}</td>
+          <td>{{yeast.stock}}</td>
+          <td>
+            {# <a href="{{ path('app_yeast_update', {id: yeast.id}) }}">
+            <button>Modifier</button>
+            </a>
+            <a href="{{ path('app_yeast_delete', {id: yeast.id}) }}">
+            <button>Supprimer</button>
+            </a> #}
+          </td>
+        </tr>
+    {% endfor %}
+
+
       
     
   </tbody>

@@ -43,18 +43,43 @@ public function create(EntityManagerInterface $entityManager , Request $request)
         
          
     }
-    /*
-    $flour->setType('T45');
-    $flour->setRate(1);
-    $flour->setUsage('patisserie et pate a pizza');
-    $flour->setStock(10);
-
-  
-    */
-
-
 
     return $this->render('flour/create.html.twig', [
+        'controller_name' => 'FlourController',
+        'form' => $form
+    ]);
+}
+#[Route('/flour_delete/{id}', name: 'app_flour_delete')]
+    public function delete(EntityManagerInterface $entityManager, int $id): Response
+    {
+        $flour = $entityManager->getRepository(Flour::class)->find($id);
+
+        $entityManager->remove($flour);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_flour');
+        
+    }
+
+    #[Route('/flour_update/{id}', name: 'app_flour_update')]
+    public function update(EntityManagerInterface $entityManager , Request $request, int $id): Response
+    {
+        $flour = $entityManager->getRepository(Flour::class)->find($id);
+
+        $form = $this->createForm(FlourType::class, $flour);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) { 
+
+            $entityManager->persist($flour);
+
+            $entityManager->flush();
+
+        return $this->redirectToRoute('app_flour');
+        
+         
+    }
+    return $this->render('flour/update.html.twig', [
         'controller_name' => 'FlourController',
         'form' => $form
     ]);
